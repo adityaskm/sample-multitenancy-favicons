@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TENANT_LIST } from './shared/constants/tenants.const';
 import { Tenant } from './shared/models/tenant.model';
 
@@ -7,7 +7,7 @@ import { Tenant } from './shared/models/tenant.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'multitenancy';
 
   tenantList = TENANT_LIST;
@@ -18,6 +18,10 @@ export class AppComponent {
   }
   public set selectedTenant(value: Tenant) {
     this._selectedTenant = value;
+    this.setSiteFavicon();
+  }
+
+  ngOnInit() {
     this.setSiteFavicon();
   }
 
